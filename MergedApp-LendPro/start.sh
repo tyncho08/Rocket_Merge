@@ -44,8 +44,8 @@ if ! kill_port 4001; then
     echo -e "${RED}Cannot start frontend - port 4001 is occupied${NC}"
     exit 1
 fi
-if ! kill_port 5001; then
-    echo -e "${RED}Cannot start backend - port 5001 is occupied${NC}"
+if ! kill_port 5002; then
+    echo -e "${RED}Cannot start backend - port 5002 is occupied${NC}"
     exit 1
 fi
 
@@ -132,15 +132,15 @@ echo -e "${YELLOW}Restoring backend dependencies...${NC}"
 dotnet restore > /dev/null 2>&1
 
 # Start the backend
-nohup dotnet run --urls "http://localhost:5001" > ../../$BACKEND_LOG 2>&1 &
+nohup dotnet run --urls "http://localhost:5002" > ../../$BACKEND_LOG 2>&1 &
 BACKEND_PID=$!
 cd ../..
 
 # Wait for backend to start
 echo -e "${YELLOW}Waiting for backend to start...${NC}"
 for i in {1..30}; do
-    if curl -s http://localhost:5001/api/auth/me > /dev/null; then
-        echo -e "${GREEN}✓ Backend API started successfully on port 5001${NC}"
+    if curl -s http://localhost:5002/api/auth/me > /dev/null; then
+        echo -e "${GREEN}✓ Backend API started successfully on port 5002${NC}"
         break
     fi
     if [ $i -eq 30 ]; then
@@ -187,7 +187,7 @@ echo -e "${GREEN}✅ LendPro Platform Started Successfully!${NC}"
 echo -e "${BLUE}========================================${NC}"
 echo ""
 echo -e "${GREEN}Frontend URL:${NC} http://localhost:4001"
-echo -e "${GREEN}Backend API:${NC} http://localhost:5001/api"
+echo -e "${GREEN}Backend API:${NC} http://localhost:5002/api"
 echo ""
 echo -e "${BLUE}Test Accounts:${NC}"
 echo -e "Regular User: ${YELLOW}john.doe@email.com${NC} / ${YELLOW}user123${NC}"

@@ -48,7 +48,7 @@ stop_process() {
 stop_process "Frontend" ".frontend.pid" 4001
 
 # Stop Backend
-stop_process "Backend" ".backend.pid" 5001
+stop_process "Backend" ".backend.pid" 5002
 
 # Stop PostgreSQL if running in Docker
 if command -v docker &> /dev/null; then
@@ -63,7 +63,7 @@ fi
 # Clean up any remaining Node.js processes on our ports
 echo -e "${BLUE}Cleaning up any remaining processes...${NC}"
 pkill -f "ng serve.*4001" 2>/dev/null
-pkill -f "dotnet.*5001" 2>/dev/null
+pkill -f "dotnet.*5002" 2>/dev/null
 
 # Remove log files if they're empty
 if [ -f "backend/backend.log" ] && [ ! -s "backend/backend.log" ]; then

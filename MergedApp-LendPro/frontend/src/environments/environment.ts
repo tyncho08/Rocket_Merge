@@ -2,7 +2,7 @@ export const environment = {
   production: false,
   
   // API Configuration
-  apiUrl: 'http://localhost:5001/api',
+  apiUrl: 'http://localhost:5002/api',
   
   // Application Configuration
   appName: 'LendPro - Complete Mortgage Platform',

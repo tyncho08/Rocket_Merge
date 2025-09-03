@@ -108,3 +108,14 @@ jspm_packages/
 # Temporary files
 tmp/
 temp/
+
+# Process ID files
+*.pid
+.*.pid
+
+# TypeScript build info
+*.tsbuildinfo
+
+# .NET build artifacts
+**/obj/
+**/bin/
